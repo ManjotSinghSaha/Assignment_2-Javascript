@@ -9,6 +9,7 @@ block content
             th Description
             th Price
             th Update
+            th Delete
         tbody
             //If there is articles, create a row and column for each article
             each ad in advertisements
@@ -19,7 +20,7 @@ block content
                     td 
                         a(href='/update/'+ad.id) Update
                     td
-                        form.deleteForm(id=ad.id)
+                        form(method='POST' action='/delete/'+ad.id)
                             button(type='submit') Delete
   else
     h1 No articles!

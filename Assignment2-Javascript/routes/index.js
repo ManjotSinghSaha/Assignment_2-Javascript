@@ -16,12 +16,12 @@ router.get('/', function (req, res) {
     }
 });
 
-/* GET for insert page */
+/* GET for Insert page */
 router.get('/insert', function (req, res) {
     res.render('insert');
 });
 
-/* POST for insert page */
+/* POST for Insert page */
 router.post('/insert', function (req, res) {
     const ad = new adsModel({
         title: req.body.title,
@@ -39,34 +39,36 @@ router.post('/insert', function (req, res) {
 /* GET for Update page */
 router.get('/update/:id', function (req, res) {
     adsModel.findById(req.params.id, function (err, foundAds) {
-        if (err)
-            console.log(err);
+        if (!err)
+            res.render('update', { ad: foundAds })
         else
-            res.render('update', { ad: foundAds });
+            console.log(err);
     });
 });
 
+/* POST for Update page*/
 router.post('/update', function (req, res) {
-    adsModel.findByIdAndUpdate(req.params.id,
-    {
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price
-    }), function (err) {
-        if (err)
-            console.log(err);
-        else
-            res.redirect('/');
-    }
+    adsModel.findByIdAndUpdate(req.body.id,
+        {
+            title: req.body.title,
+            description: req.body.description,
+            price: req.body.price
+        }, function (err) {
+            if (err)
+                console.log(err);
+            else
+                res.redirect('/');
+        });
 });
 
+/* POST for Delete page*/
 router.post('/delete/:id', function (req, res) {
     adsModel.findByIdAndDelete(req.params.id, function (err) {
         if (!err)
             res.redirect('/');
         else
             console.log(err);
-    })
+    });
 });
 
 module.exports = router;
