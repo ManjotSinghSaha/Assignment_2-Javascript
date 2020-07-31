@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  //Check for any articles being passed in from the server
+  if (advertisements && advertisements.length)
+    table
+        thead
+            th Name
+            th Description
+            th Price
+            th Update
+        tbody
+            //If there is articles, create a row and column for each article
+            each ad in advertisements
+                tr
+                    td= ad.title
+                    td= ad.description
+                    td= ad.price
+                    td 
+                        a(href='/update/'+ad.id) Update
+                    td
+                        form.deleteForm(id=ad.id)
+                            button(type='submit') Delete
+  else
+    h1 No articles!
