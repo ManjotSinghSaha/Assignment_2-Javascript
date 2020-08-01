@@ -1,17 +1,23 @@
 extends layout
 
 block content
-  h1 Insert Article below
+  h1 Insert Your Advertisement
+  hr
   //Insert form
-  form(method='POST' action='/insert')
-    div
-        h2 Insert title
-        input(type='text' name='title')
-    div
+  form(method='POST' action='/insert' enctype='multipart/form-data')
+    fieldset
+        h2 Title
+        input(type='text' name='title' placeholder="Enter the title")
+    fieldset
+        h2 Image
+        input(type='text' name='pictitle' placeholder="Enter name of image")
+        br
+        input#btnupload(type='file' name='upload')
+    fieldset
         h2 Description
-        input(type='text' name='description')
-    div
+        input(type='text' name='description' placeholder="Enter description")
+    fieldset
         h2 Price
-        input(type='text' name='price')
+        input(type='text' name='price' placeholder="Enter price")
     div
-        button(type='submit' value='Submit') Submit
+        button#btninsert(type='submit' value='Submit') Submit

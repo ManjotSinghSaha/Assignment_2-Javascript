@@ -6,21 +6,24 @@ block content
     table
         thead
             th Name
+            th Image
             th Description
             th Price
-            th Update
-            th Delete
+            //th Update
+            //th Delete
         tbody
             //If there is articles, create a row and column for each article
             each ad in advertisements
                 tr
                     td= ad.title
+                    td
+                        img(src='/images/'+ad.image style="width:300px; height:210px;")
                     td= ad.description
                     td= ad.price
-                    td 
-                        a(href='/update/'+ad.id) Update
-                    td
-                        form(method='POST' action='/delete/'+ad.id)
-                            button(type='submit') Delete
+                    //td 
+                    //    a(href='/update/'+ad.id) Update
+                    //td
+                    //    form(method='POST' action='/delete/'+ad.id)
+                    //        button(type='submit') Delete
   else
-    h1 No articles!
+    h1 No ads!
