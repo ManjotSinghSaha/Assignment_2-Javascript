@@ -1,10 +1,9 @@
 'use strict';
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function (req, res) {
-    res.send('respond with a resource');
-});
+var userModel = require('../models/user');
+
 
 module.exports = router;

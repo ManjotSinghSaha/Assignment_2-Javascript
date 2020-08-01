@@ -7,11 +7,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// Connection Mongodb
+// Packages for authentication
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
+var session = require('express-session');
+
+// Connection to Mongodb
 const MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 const url = "mongodb+srv://dbRoot:Myfriendmax1@cluster0-rccpr.mongodb.net/test?retryWrites=true&w=majority";
 
+// Connection to database
 try {
     mongoose.connect(url, { useNewUrlParser: true });
     var db = mongoose.connection;
@@ -27,6 +34,7 @@ try {
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var userModel = require('./models/user');
 
 var app = express();
 
@@ -42,8 +50,50 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Session setup
+app.use(session({
+    secret: 'oneSecret',
+    saveUninitialized: true,
+    resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
 app.use('/users', users);
+
+
+//Serialize user
+passport.serializeUser(function (user, done) {
+    done(null, user.id)
+});
+
+//Deserialize user try to find username
+passport.deserializeUser(function (id, done) {
+    userModel.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
+
+//Local strategy used for logging users
+passport.use(new LocalStrategy( function (username, password, done) {
+        userModel.findOne({
+            username: username
+        }, function (err, user) {
+            if (err) 
+                return done(err);
+            if (!user) 
+                return done(null, false);
+
+            //Compare hashed passwords
+            if (!bcrypt.compareSync(password, user.password)) {
+                return done(null, false);
+            }
+
+            return done(null, user);
+        });
+    }
+));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

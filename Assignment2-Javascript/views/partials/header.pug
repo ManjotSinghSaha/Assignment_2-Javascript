@@ -9,6 +9,16 @@
 // this will take us back to the home page by clicking on it
 a(href='/')
     h1 fLickr.com
+if (!user)
+    a(href='/login') Login 
+    | | 
+    a(href='/register') Register
+    | | 
+    a(href='/users') Users
+else
+    a(href='/logout') Logout
+    | | 
+    a(href='/users') Users
 
 // This is the nav bar
 div(class="topnav")
@@ -18,4 +28,5 @@ div(class="topnav")
     a(href="services") Services
     a(href="Projects") Projects
     a(href='/insert') Insert
+
 
