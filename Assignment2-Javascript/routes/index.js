@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
     try {
         adsModel.find({}, function (err, foundAds) {
             if (!err)
-                res.render('index', { title: 'Home', advertisements: foundAds });
+                res.render('index', { title: 'Home', advertisements: foundAds,user: req.user });
         });
     }
     catch (err) {
@@ -42,6 +42,19 @@ router.get('/services', function (req, res) {
     res.render('services', { title: 'Services' });
 });
 
+/* GET edit page. */
+router.get('/edit', function (req, res) {
+    try {
+        adsModel.find({}, function (err, foundAds) {
+            if (!err)
+                res.render('edit', { title: 'Edit Ads', advertisements: foundAds, user: req.user });
+        });
+    }
+    catch (err) {
+        res.render('index', { title: 'Edit' });
+    }
+});
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +65,7 @@ router.get('/services', function (req, res) {
 
 /* GET for Insert page */
 router.get('/insert', function (req, res) {
-    res.render('insert', {title  : 'Insert'});
+    res.render('insert', { title: 'Insert', user: req.user });
 });
 
 /* POST for Insert page */
@@ -94,7 +107,7 @@ router.post('/insert', function (req, res) {
 router.get('/update/:id', function (req, res) {
     adsModel.findById(req.params.id, function (err, foundAds) {
         if (!err)
-            res.render('update', { ad: foundAds })
+            res.render('update', { ad: foundAds, title: 'Insert', user: req.user })
         else
             console.log(err);
     });
@@ -111,7 +124,7 @@ router.post('/update', function (req, res) {
             if (err)
                 console.log(err);
             else
-                res.redirect('/');
+                res.redirect('/edit');
         });
 });
 
@@ -119,7 +132,7 @@ router.post('/update', function (req, res) {
 router.post('/delete/:id', function (req, res) {
     adsModel.findByIdAndDelete(req.params.id, function (err) {
         if (!err)
-            res.redirect('/');
+            res.redirect('/edit');
         else
             console.log(err);
     });

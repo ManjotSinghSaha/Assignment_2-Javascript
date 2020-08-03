@@ -3,7 +3,7 @@ extends layout
 block content
   //Check for any articles being passed in from the server
   if (advertisements && advertisements.length)
-    table
+    table#tblindex
         thead
             th Name
             th Image
@@ -17,7 +17,7 @@ block content
                 tr
                     td= ad.title
                     td
-                        img(src='/images/'+ad.image style="width:300px; height:210px;")
+                        img(src='/images/'+ad.image style="width:300px; height:210px;" alt="No image posted by user.")
                     td= ad.description
                     td= ad.price
                     //td 
@@ -26,4 +26,4 @@ block content
                     //    form(method='POST' action='/delete/'+ad.id)
                     //        button(type='submit') Delete
   else
-    h1 No ads!
+    h1 No ads present at this moment.

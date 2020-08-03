@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  //To check if any ads present
+  if (advertisements && advertisements.length)
+    table#tbledit
+        thead
+            th Name
+            th Image
+            th Description
+            th Price
+            th Update
+            th Delete
+        tbody
+            //If there are ads present then this will show the data in table
+            each ad in advertisements
+                tr
+                    td= ad.title
+                    td
+                        img(src='/images/'+ad.image style="width:300px; height:210px;" alt="No image posted by user.")
+                    td= ad.description
+                    td= ad.price
+                    td 
+                        a#hrefupdate(href='/update/'+ad.id) Update
+                    td
+                        form(method='POST' action='/delete/'+ad.id)
+                            button#btndelete(type='submit' onclick='deleteConfirmation();') Delete
+                            script.
+                                function deleteConfirmation() {
+                                confirm("Are you sure want to Delete this Ad ?");
+                                }
+  else
+    h1 No ads present at this moment.
+                             

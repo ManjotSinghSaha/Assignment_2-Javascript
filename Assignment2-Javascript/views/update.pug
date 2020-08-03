@@ -2,17 +2,18 @@ extends layout
 
 block content
   h1 Update Article below
+  hr
   //Insert form
   form(method='POST' action='/update')
     div
-        h2 Insert name
+        h2 New Title
         input(type='text' name='title' value=ad.title placeholder="New title")
     div
-        h2 Description
+        h2 New Description
         input(type='text' name='description' value=ad.description)
     div
-        h2 Price
+        h2 New Price
         input(type='text' name='price' value=ad.price)
     div
         input(type='hidden' name='id' value=ad.id)
-        button(type='submit' value='Submit') Submit
+        button#btnsubmit(type='submit' value='Submit') Submit

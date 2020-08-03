@@ -74,7 +74,7 @@ img {
     text-align: center;
 }
 
-table {
+#tblindex {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 80%;
@@ -115,13 +115,69 @@ input {
     margin-top: -30px;
     padding: 2px;
 }
-#btninsert{
+#btninsert {
     margin-top: 30px;
     border-radius: 10px;
     height: 40px;
     width: 150px;
+    background-color: crimson;
+    font-size: 20px;
 }
 
 #btnupload {
     margin-top: 10px;
+}
+
+#username, #password, #email {
+    margin-left: 15px;
+    margin-top: 3.5px;
+}
+
+#btnsignup, #btnlogin, #btnsubmit {
+    margin-top: 20px;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    background-color: crimson;
+    font-size: 20px;
+}
+
+#btndelete {
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    background-color: crimson;
+    font-size: 20px;
+}
+
+#tbledit {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 40px;
+    margin-left: 5%;
+}
+
+#navinsert {
+    margin-left: 42%;
+    background-color: steelblue;
+}
+
+#navedit {
+    margin-left: 0.5px;
+    background-color: steelblue;
+}
+
+#navlogin {
+    margin-left: 50%;
+    background-color: orangered;
+}
+
+#navlogout {
+    margin-left: 1px;
+    background-color: orangered;
+}
+#navsignup {
+    margin-left: 30px;
+    background-color: steelblue;
 }
