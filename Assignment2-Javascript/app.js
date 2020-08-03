@@ -26,7 +26,7 @@ try {
         console.log(err);
     });
     db.once('open', function (callback) {
-        console.log('Connected to MongoDB');
+        console.log('Database Connected');
     });
 } catch (err) {
     console.log("Error : " + err);

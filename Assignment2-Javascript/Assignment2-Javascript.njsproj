@@ -70,12 +70,6 @@
     <Content Include="views\partials\header.pug">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="views\projects.pug">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="views\services.pug">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="views\signup.pug">
       <SubType>Code</SubType>
     </Content>

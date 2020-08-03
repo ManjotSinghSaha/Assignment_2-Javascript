@@ -14,28 +14,24 @@ a(href='/')
 div(class="topnav")
     if (!user)
         a(class="active") #{title}
-        | | 
-        a(href="about") About Me
+        | |
+        a(href="/") Home
+        | |
+        a(href="about") About
         | | 
         a(href="contact") Contact 
-        | | 
-        a(href="services") Services
-        | | 
-        a(href="Projects") Projects
-        | | 
+        | |
         a#navlogin(href='/login') Login 
         | | 
         a#navsignup(href='/signup') Sign Up
     else
         a(class="active") #{title}
         | | 
-        a(href="about") About Me
+        a(href="/") Home
+        | |
+        a(href="about") About
         | | 
         a(href="contact") Contact 
-        | | 
-        a(href="services") Services
-        | | 
-        a(href="Projects") Projects
         | | 
         a#navinsert(href='/insert') Insert Ad
         | | 

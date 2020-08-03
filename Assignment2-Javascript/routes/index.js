@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
 
 /* GET About Me page */
 router.get('/about', function (req, res) {
-    res.render('about', { title: 'About Me' });
+    res.render('about', { title: 'About' });
 });
 
 /* GET contact page. */
@@ -32,15 +32,6 @@ router.get('/contact', function (req, res) {
     res.render('contact', { title: 'Contact' });
 });
 
-/* GET projects page. */
-router.get('/projects', function (req, res) {
-    res.render('projects', { title: 'Projects' });
-});
-
-/* GET services page. */
-router.get('/services', function (req, res) {
-    res.render('services', { title: 'Services' });
-});
 
 /* GET edit page. */
 router.get('/edit', function (req, res) {

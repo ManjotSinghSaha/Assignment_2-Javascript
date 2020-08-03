@@ -1,18 +1,17 @@
 extends layout
 
 block content
-  //Check for any articles being passed in from the server
+  p#indexpara fLickr.com is world largest advertisements site with millions of live ads in a wide range of categories - cars, housing, jobs and everything in between. Two new ads are posted every minute! We’re proud to provide a platform that connects Canadians, helping them to buy great items in their community, make money off unused possessions cluttering up houses, and help the country waste less.
+  //To check if any ads present
   if (advertisements && advertisements.length)
     table#tblindex
         thead
-            th Name
+            th Ttile
             th Image
             th Description
             th Price
-            //th Update
-            //th Delete
         tbody
-            //If there is articles, create a row and column for each article
+            //If there are ads present then this will show the data in table
             each ad in advertisements
                 tr
                     td= ad.title
@@ -20,10 +19,5 @@ block content
                         img(src='/images/'+ad.image style="width:300px; height:210px;" alt="No image posted by user.")
                     td= ad.description
                     td= ad.price
-                    //td 
-                    //    a(href='/update/'+ad.id) Update
-                    //td
-                    //    form(method='POST' action='/delete/'+ad.id)
-                    //        button(type='submit') Delete
   else
     h1 No ads present at this moment.

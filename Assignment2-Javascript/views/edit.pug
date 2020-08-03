@@ -5,7 +5,7 @@ block content
   if (advertisements && advertisements.length)
     table#tbledit
         thead
-            th Name
+            th Title
             th Image
             th Description
             th Price
@@ -21,7 +21,8 @@ block content
                     td= ad.description
                     td= ad.price
                     td 
-                        a#hrefupdate(href='/update/'+ad.id) Update
+                        a(href='/update/'+ad.id)
+                            img(src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAB5CAMAAAAqJH57AAAAZlBMVEX///8jHyBjYWEAAAAXEhPc3NypqaogHB3n5+fs7OwbFhcFAACzsrJoZmb4+PgdGRqIh4eUk5O8u7s1MjMPCArLysry8vIoJCUtKSp5eHhdW1tMSUpWU1ODgYFDQkI7OTmcm5tycHHR3DPeAAADCklEQVRoge3a25qiMAwAYLGFalEqCsp6AOf9X3JRGYQ2hS5Jb/ZrruYbDz/YpCmFVUQexXXlFNSuZNVGI8r8ers/jme/MrsfM82tWcolL9glP3uU2UFzV08mu9cEa0pvMsv1wczZ4GVZlH5kMQO370hLH7JgiQ4fmPGekl4W7DgLj2gqWI3G0Aa30dNEsFQGvDqCcn/WRHAUG/CLFhDdpdnof3xhFBd93vrELoVoWW01WZz264WxBeGWBs86/aPJfG/5PCJ20FgLHmvymsp77Po/wTR7Tzk+5JyxaVre/MivKXMwnwG0OGU+5PdcLUa0nmbild3kctckhrSR4V7Oue9OYjDWOq3qFbk8bIt2Oj2Qy+MmYc3wlLyetYWAjWbGHIaVddhSXEV9JpZNGCwu3nzaC50MwFBx8aprL2QyCGvF1TZNKX77GpVsgSOtuLjql/tEMrzmMmn+7eQ08hQ8ogdBItt/6o42VuJE8hwMXQSQyLMwTONlB3hcXFSyE9x+OdOvb7HydFZ/vzsyFsZI2fWMK3NFjpNd4RNwDYKSMTBKdv6pwasuhOwISwVfdS2XkfBy2bWcpO06c6nsCgPlhJNRWY2RXeHGDi+Tn6hyQsgluAdhhIym4CXyuVJOMLcm11K5TF1gLqbhJfKhcIHNcsqs+9uu8p07wGY5Zc14t26B3MwPMwBvG4aWb9Iq2uG44nj5NFdT0kyuUsgILWdqRga60y5tRwgtxzOpDdTx8z31oOXjdDkD5fTzmWzRcjIpm8mVXbsPoOXJicSEt/ffI0XL14mJxIQ3dX+gaPliT21p7O3Hl+9xomV7bwayOhlugyHljVWGVpmUcmmTwcUepZxYZHixRynncFGl8GKPUt5rRSXaUAX70W+p08vf7iwUL1ihqktVP8x7g/Ty+y4FL9K0UKf1YVfG2w18utTyhrVRrfOkjPWND99yUs6sKX3J/xhBDnKQgxzkIAc5yEEOcpCDHOQgBznICNnzs8x2GfH8tjVq5SIvf2bdHsObahOy5whykIMc5P9H/gtkNTclKZ4QxQAAAABJRU5ErkJggg==' style='width: 50px; height: 50px;')
                     td
                         form(method='POST' action='/delete/'+ad.id)
                             button#btndelete(type='submit' onclick='deleteConfirmation();') Delete
