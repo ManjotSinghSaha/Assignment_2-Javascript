@@ -36,9 +36,6 @@
     <Content Include="models\user.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="public\javascripts\script.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="routes\index.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />

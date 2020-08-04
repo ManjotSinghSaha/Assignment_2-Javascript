@@ -9,6 +9,10 @@ var fs = require('fs');
 var passport = require('passport');
 var bcrypt = require('bcrypt');
 
+////////////////////////////////////////////////////////////////////////////////
+    /* Routes declared for different pages */
+///////////////////////////////////////////////////////////////////////////////
+
 /* GET home page. */
 router.get('/', function (req, res) {
     try {
@@ -22,7 +26,7 @@ router.get('/', function (req, res) {
     }
 });
 
-/* GET About Me page */
+/* GET About page */
 router.get('/about', function (req, res) {
     res.render('about', { title: 'About' });
 });
@@ -49,7 +53,7 @@ router.get('/edit', function (req, res) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-    /* CRUD Operations
+    /* CRUD Operations */
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -104,7 +108,7 @@ router.get('/update/:id', function (req, res) {
     });
 });
 
-/* POST for Update page*/
+/* POST for Update page */
 router.post('/update', function (req, res) {
     adsModel.findByIdAndUpdate(req.body.id,
         {
@@ -119,7 +123,7 @@ router.post('/update', function (req, res) {
         });
 });
 
-/* POST for Delete page*/
+/* POST for Delete page */
 router.post('/delete/:id', function (req, res) {
     adsModel.findByIdAndDelete(req.params.id, function (err) {
         if (!err)
@@ -132,35 +136,36 @@ router.post('/delete/:id', function (req, res) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-    // Authentication
+    /* Authentication */
 ///////////////////////////////////////////////////////////////////////////////
 
-/*GET for login*/
+/* GET for login */
 router.get('/login', function (req, res) {
     res.render('login', { title: 'Login' });
 });
 
-/*POST for login*/
+/* POST for login */
 //Try to login with passport
 router.post('/login', passport.authenticate('local', {
+    //Success go to Home page AND Fail go to Signup page
     successRedirect: '/',
     failureRedirect: '/signup',
     failureMessage: 'Invalid Login'
 }));
 
-/*Logout*/
+/* Logout */
 router.get('/logout', function (req, res) {
     req.session.destroy(function (err) {
         res.redirect('/');
     });
 });
 
-/*GET for signup*/
+/* GET for signup */
 router.get('/signup', function (req, res) {
     res.render('signup', { title: 'SignUp' });
 });
 
-/*POST for signup*/
+/* POST for signup */
 router.post('/signup', function (req, res) {
     //Insert user
     bcrypt.hash(req.body.password, 10, function (err, hash) {
@@ -176,12 +181,15 @@ router.post('/signup', function (req, res) {
             if (user.length)
                 return res.redirect('/login');
             const newUser = new userModel(registerUser);
+            // This will save the user info in database and after successful login redirect to Home page.
             newUser.save(function (err) {
                 console.log('Inserting');
-                if (err) console.log(err);
+                if (err)
+                    console.log(err);
                 req.login(newUser, function (err) {
                     console.log('Trying to login');
-                    if (err) console.log(err);
+                    if (err)
+                        console.log(err);
                     return res.redirect('/');
                 });
             });
